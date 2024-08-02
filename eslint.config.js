@@ -1,96 +1,40 @@
-import globals from 'globals'
-import pluginJs from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js'
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat'
-import stylisticJs from '@stylistic/eslint-plugin-js'
-import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
-
-import fsd from '@feature-sliced/eslint-config'
+import { ESLint } from "eslint";
+import reactPlugin from "eslint-plugin-react";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import prettierPlugin from "eslint-plugin-prettier";
+import parser from "@typescript-eslint/parser";
 
 export default [
   {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}']
-  },
-  {
+    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
     languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parser: parser,
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
-      }
-    }
-  },
-  {
-    languageOptions: {
-      globals: globals.browser
-    }
-  },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...fixupConfigRules(pluginReactConfig),
-  fsd,
-  {
+          jsx: true,
+        },
+      },
+    },
     plugins: {
-      '@stylistic/js': stylisticJs,
-      'react-hooks': fixupPluginRules(eslintPluginReactHooks),
+      react: reactPlugin,
+      "@typescript-eslint": tsPlugin,
+      prettier: prettierPlugin,
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     },
     rules: {
-      ...eslintPluginReactHooks.configs.recommended.rules,
-      "react/prefer-stateless-function": "error",
-      "react/button-has-type": "error",
-      "react/no-unused-prop-types": "error",
-      "react/jsx-pascal-case": "error",
-      "react/jsx-no-script-url": "error",
-      "react/no-children-prop": "error",
-      "react/no-danger": "error",
-      "react/no-danger-with-children": "error",
-      "react/no-unstable-nested-components": ["error", { allowAsProps: true }],
-      "react/jsx-fragments": "error",
-      "react/destructuring-assignment": [
-        "error",
-        "always",
-        { destructureInSignature: "always" },
-      ],
-      "react/jsx-max-depth": ["error", { max: 5 }],
-      "react/function-component-definition": [
-        "warn",
-        { namedComponents: "arrow-function" },
-      ],
-      "react/jsx-key": [
-        "error",
-        {
-          checkFragmentShorthand: true,
-          checkKeyMustBeforeSpread: true,
-          warnOnDuplicates: true,
-        },
-      ],
-      "react/jsx-no-useless-fragment": "warn",
-      "react/jsx-curly-brace-presence": "warn",
-      "react/no-typos": "warn",
-      "react/display-name": "warn",
-      "react/self-closing-comp": "warn",
-      "react/jsx-sort-props": "warn",
-      "react/react-in-jsx-scope": "off",
-      "react/jsx-one-expression-per-line": "off",
+      "prettier/prettier": "error",
+      "no-unused-vars": "warn",
       "react/prop-types": "off",
-      "react/no-array-index-key": "warn",
-      "import/no-default-export": "error",
-      "prefer-arrow-functions/prefer-arrow-functions": [
-        "warn",
-        {
-          classPropertiesAllowed: true,
-          disallowPrototype: true,
-          returnStyle: "unchanged",
-        },
-      ],
-      "arrow-body-style": "warn",
-      "prefer-arrow-callback": [
-        "warn",
-        {
-          allowNamedFunctions: true,
-        },
-      ],
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
-]
+];
