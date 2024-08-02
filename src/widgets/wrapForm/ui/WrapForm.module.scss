@@ -1,10 +1,29 @@
 .root {
   display: flex;
   flex-direction: column;
-  background-color: rgb(249, 249, 249);
-  border-radius: 16px;
-  padding: 16px;
+  align-items: center;
+}
+
+.swapFieldsBtn {
+  background-color: white;
+  padding: 4px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
 
-  gap: 16px;
+  border: 1px solid rgba(225, 231, 255, 0.75);
+  cursor: pointer;
+
+  transition: border-color 0.2s ease-in-out;
+  margin: -8px auto;
+  z-index: 1;
+
+  &:hover {
+    border-color: black;
+  }
+}
+
+.submitBtn {
+  margin-top: 16px;
 }

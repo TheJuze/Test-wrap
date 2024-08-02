@@ -1,0 +1,14 @@
+.root {
+  padding: 4px 32px;
+  border-radius: 4px;
+  font-size: 18px;
+
+  border: 1px solid rgba(225, 231, 255, 0.75);
+  cursor: pointer;
+
+  transition: border-color 0.2s ease-in-out;
+
+  &:hover {
+    border-color: black;
+  }
+}

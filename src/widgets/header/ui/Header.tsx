@@ -1,5 +1,6 @@
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import styles from "./Header.module.scss";
+import { Button } from "../../../shared/ui";
 
 export const Header = () => {
   const { isConnected, address } = useAccount();
@@ -23,9 +24,9 @@ export const Header = () => {
           Account: <span className={styles.address}>{address}</span>
         </p>
       )}
-      <button onClick={handleButtonClick}>
+      <Button onClick={handleButtonClick}>
         {isConnected ? "Disconnect" : "Connect Wallet"}
-      </button>
+      </Button>
     </header>
   );
 };

@@ -1,0 +1,39 @@
+.root {
+  background-color: rgb(249, 249, 249);
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  gap: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.token {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tokenIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.balance {
+  white-space: nowrap;
+  margin: 0;
+  font-size: 14px;
+}
