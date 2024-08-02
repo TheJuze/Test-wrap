@@ -3,6 +3,7 @@ import arrowDownUpURL from "../../../../public/icons/arrowDownUp.svg?url";
 
 import styles from "./WrapForm.module.scss";
 import { InputNumber } from "../../../shared/ui";
+import { useWrapEth, useUnwrapEth } from "../api";
 
 export const WrapForm = () => {
   const [isWrap, setIsWrap] = useState(true);
@@ -11,6 +12,18 @@ export const WrapForm = () => {
 
   const handleSideChange = () => {
     setIsWrap((prevState) => !prevState);
+  };
+
+  const handleWrapEth = useWrapEth(amount);
+  const handleUnwrapEth = useUnwrapEth(amount);
+
+  const handleSubmit = () => {
+    if (isWrap) {
+      handleWrapEth();
+      return;
+    }
+
+    handleUnwrapEth();
   };
 
   return (
@@ -31,7 +44,9 @@ export const WrapForm = () => {
         placeholder="0"
       />
 
-      <button type="submit">{isWrap ? "Wrap" : "Unwrap"}</button>
+      <button type="submit" onClick={handleSubmit}>
+        {isWrap ? "Wrap" : "Unwrap"}
+      </button>
     </div>
   );
 };

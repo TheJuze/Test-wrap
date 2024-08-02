@@ -1,5 +1,5 @@
 import { http, createConfig } from "wagmi";
-import { mainnet } from "wagmi/chains";
+import { mainnet } from "./shared/constants/myETHChain.ts";
 import { injected } from "wagmi/connectors";
 
 export const config = createConfig({
